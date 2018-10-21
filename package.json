@@ -3,14 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/app-types": "^0.3.2",
     "firebase": "^4.10.1",
     "prop-types": "^15.6.0",
     "re-base": "3.2.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-redux-firebase": "^2.1.8",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.2.1",
+    "redux": "^4.0.1",
+    "redux-firestore": "^0.5.8",
+    "redux-thunk": "^2.3.0",
     "serve": "^6.5.8"
   },
   "scripts": {
