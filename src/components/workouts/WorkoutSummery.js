@@ -1,9 +1,12 @@
 import React , { Components } from 'react';
 
-const WorkoutSummery = () => {
+
+const WorkoutSummery = ( {workout}) => {
+
     return(
         <div className="single-workout">
-            Workout Summery
+            <h2>{ workout.name }</h2>
+            <p>{ workout.description }</p>
         </div>
     )
 };
