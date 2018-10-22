@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter , Route , Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import NavBar from "./components/layouts/Navbar";
 import Dashboard from './components/dashboard/Dashboard';
@@ -10,15 +11,19 @@ import CreateWorkout from './components/workouts/CreateWorkout';
 
 
 class App extends Component {
+
   render() {
+      const { auth } = this.props;
+      console.log( auth );
+
     return (
         <BrowserRouter>
             <div className="workout-logger">
                 <NavBar/>
                  <Switch>
-                    <Route exact path="/" component={ Dashboard }/>
+                     {  auth.uid && <Route exact path="/" component={ Dashboard }/> }
+                    <Route path="/" component={ SignIn }/>
                     <Route path="/workout/:id" component={ WorkoutDetials}/>
-                    <Route path="/signin" component={ SignIn }/>
                     <Route path="/signup" component={ SignUp }/>
                     <Route path="/create-workout" component={ CreateWorkout }/>
                  </Switch>
@@ -28,4 +33,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ( state ) => {
+    return{
+        auth: state.firebase.auth
+    }
+}
+
+export default connect( mapStateToProps)(App);
