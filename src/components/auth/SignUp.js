@@ -1,4 +1,7 @@
 import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
+import { signUp } from "../../store/actions";
 
 class SignUp extends Component {
 
@@ -18,31 +21,38 @@ class SignUp extends Component {
     handleSubmit = ( e ) => {
         e.preventDefault();
         console.log( this.state );
+        this.props.signUp(this.state);
     };
 
     render() {
+
+        const { auth , authError } = this.props;
+
+        if( auth.uid ) return <Redirect to="/"/>
+
         return (
-            <div className="sign-in_wrapper">
+            <div className="sign-in_wrapper container">
                 <form onSubmit={ this.handleSubmit }>
                     <h5>Sign Up</h5>
-                    <div className="input-filed">
+                    <div className="form-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" onChange={ this.handleChange}/>
+                        <input type="email" id="email" onChange={ this.handleChange} className="form-control"/>
                     </div>
-                    <div className="input-filed">
+                    <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" onChange={ this.handleChange}/>
+                        <input type="password" id="password" onChange={ this.handleChange} className="form-control"/>
                     </div>
-                    <div className="input-filed">
+                    <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" id="firstName" onChange={ this.handleChange}/>
+                        <input type="text" id="firstName" onChange={ this.handleChange} className="form-control"/>
                     </div>
-                    <div className="input-filed">
+                    <div className="form-group">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" onChange={ this.handleChange}/>
+                        <input type="text" id="lastName" onChange={ this.handleChange} className="form-control"/>
                     </div>
-                    <div className="input-filed">
-                        <button className="btn-signin btn">
+                    { authError ? <div className="alert alert-danger">{ authError }</div> : null }
+                    <div className="form-group">
+                        <button className="btn btn-primary">
                             SignUp
                         </button>
                     </div>
@@ -52,4 +62,17 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapStateToProps = ( state ) => {
+    return{
+        auth: state.firebase.auth,
+        authError : state.auth.authError
+    }
+};
+
+const MapDispatchToProps = ( dispatch ) => {
+    return{
+        signUp : ( newUser ) => dispatch( signUp( newUser))
+    }
+};
+
+export default connect( mapStateToProps , MapDispatchToProps  )(SignUp);

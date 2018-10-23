@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { signOut } from "../../store/actions";
 
 const SignedInLinks = ( props ) => {
-
+    console.log( props );
     return(
         <ul className="nav justify-content-end">
             <li className="nav-item"><NavLink to="/" className="nav-link">New Log Item</NavLink></li>
