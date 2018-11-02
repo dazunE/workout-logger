@@ -11,9 +11,9 @@ const NavBar = ( props ) => {
     const links = auth.uid ? <SignedInLinks profile={ profile }/> : <SignedOutLinks/>;
 
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container">
-                <Link to="/" className="navbar-brand">Gym Logger</Link>
+        <nav className="navbar">
+            <div className="navbar_inner">
+                <Link to="/" className="brand">Gym Logger</Link>
                 { links }
             </div>
         </nav>

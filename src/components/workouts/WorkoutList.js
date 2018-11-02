@@ -5,7 +5,7 @@ import WorkoutSummery from './WorkoutSummery';
 
 const WorkoutList = ({ workouts }) => {
     return(
-        <div className="Workouts">
+        <div className="Workouts col-md-9">
             { workouts && workouts.map( workout => {
                 return(
                     <Link to={`/workout/${workout.id}`} key={workout.id}>
