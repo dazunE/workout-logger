@@ -1,9 +1,25 @@
 import styled from 'styled-components';
+import is from 'styled-is';
 
-export default styled.div
-    `position: absolute;
-    overflow: hidden;
-    width: 100%;
-    top:0;
-    left: 0;`;
+const Wrapper =  styled.div`
+  display: grid;
+  ${is('columns')`
+    grid-template-columns: ${props => props.columns};
+  `};
+`;
+
+const AbsWrapper = styled(Wrapper)`
+  position: absolute;
+  top:0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+`;
+
+export {
+    Wrapper,
+    AbsWrapper,
+}
+
+
 
