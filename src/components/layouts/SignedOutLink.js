@@ -6,8 +6,8 @@ const SignedOutLinks = () => {
         <ul className="nav justify-content-end">
             <li className="nav-item"><NavLink to="/" className="nav-link">About Logger</NavLink></li>
             <li className="nav-item"><NavLink to="/" className="nav-link">Signup</NavLink></li>
-        </ul>
-    )
+</ul>
+)
 };
 
 export default SignedOutLinks;

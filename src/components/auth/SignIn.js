@@ -26,7 +26,7 @@ class SignIn extends Component {
         const { authError } = this.props ;
 
         return (
-            <div className="sign-in_wrapper container">
+            <div className="sign-in_wrapper">
                 <form onSubmit={this.handleSubmit}>
                     <h5>Sign In</h5>
                     <div className="form-group">
