@@ -19,6 +19,7 @@ class CreateWorkout extends Component {
     handleSubmit = ( e ) => {
         e.preventDefault();
         this.props.createWorkout(this.state);
+        this.props.history.push('/');
     };
 
 

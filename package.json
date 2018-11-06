@@ -5,6 +5,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.3.2",
     "firebase": "^4.10.1",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.0",
     "re-base": "3.2.2",
     "react": "^16.4.1",
@@ -17,7 +18,9 @@
     "redux": "^4.0.1",
     "redux-firestore": "^0.5.8",
     "redux-thunk": "^2.3.0",
-    "serve": "^6.5.8"
+    "serve": "^6.5.8",
+    "styled-components": "^4.0.3",
+    "styled-is": "^1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
