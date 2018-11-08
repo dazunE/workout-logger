@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AbsWrapper } from './Wrapper';
+import { AbsWrapper } from './Wrappers/Wrapper';
 
 const BackgroundImg =  styled(AbsWrapper)`
   background: ${props => props.url ? `url(${props.url})`: "#6200ea"};
