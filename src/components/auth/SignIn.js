@@ -23,6 +23,7 @@ class SignIn extends Component {
     state = {
         email: '',
         password: '',
+        loader:false
     };
 
     handleChange = (e) => {
@@ -34,7 +35,6 @@ class SignIn extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.signIn(this.state);
-
     };
 
 
@@ -56,11 +56,11 @@ class SignIn extends Component {
                         <Wrapper width="480px" middle>
                         <InputWrapper input-group>
                             <InputGroup prepend><FiUser/></InputGroup>
-                            <Input onChange={this.handleChange} grouped/>
+                            <Input id='email' onChange={this.handleChange} grouped/>
                         </InputWrapper>
                         <InputWrapper>
                             <InputGroup prepend><FiLock/></InputGroup>
-                            <Input onChange={this.handleChange} type="password"/>
+                            <Input id='password' onChange={this.handleChange} type="password"/>
                         </InputWrapper>
                         <InputWrapper>
                            <Button large block center>Login</Button>

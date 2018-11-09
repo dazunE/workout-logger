@@ -12,33 +12,20 @@ import CreateWorkout from './components/workouts/CreateWorkout';
 class App extends Component {
 
   render() {
-      const { auth } = this.props;
-
-      if( auth.uid ) {
-          var mainApp = (
-              <Switch>
-                  <Route exact path="/" component={ Dashboard }/>
-                  <Route path="/create-workout" component={ CreateWorkout }/>
-                  <Route path="/workout/:id" component={ WorkoutDetials}/>
-              </Switch>
-          )
-      } else {
-           mainApp = (
-              <Switch>
-                  <Route exact path="/" component={ SignIn }/>
-                  <Route path="/signup" component={ SignUp }/>
-              </Switch>
-          )
-      }
-
-    return (
-        <BrowserRouter>
-            <div className="workout-logger">
-                <NavBar/>
-                { mainApp }
-            </div>
-        </BrowserRouter>
-    );
+      return(
+          <BrowserRouter>
+              <div className="App">
+                  <NavBar />
+                  <Switch>
+                      <Route exact path='/'component={Dashboard} />
+                      <Route path='/project/:id' component={WorkoutDetials} />
+                      <Route path='/signin' component={SignIn} />
+                      <Route path='/signup' component={SignUp} />
+                      <Route path='/create' component={CreateWorkout} />
+                  </Switch>
+              </div>
+          </BrowserRouter>
+      )
   }
 }
 
