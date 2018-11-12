@@ -1,78 +1,105 @@
-import React, { Component} from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
-import { signUp } from "../../store/actions";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link, Redirect} from 'react-router-dom'
+import {signUp} from "../../store/actions";
+
+import Background from '../../assests/images/main-bg.jpg';
+
+import BackgroundImg from '../styled/Background';
+import Typo from '../styled/headings/Title';
+import FormWrapper from '../styled/forms/formWrapper';
+import Form from '../styled/forms/Forms';
+import {Wrapper} from '../styled/Wrappers/Wrapper'
+import InputWrapper from '../styled/forms/InputWrapper';
+import InputGroup from '../styled/forms/InputGroup';
+import Input from '../styled/forms/Input';
+import Button from '../styled/Elements/Button';
+import {FiLock, FiMail, FiUser , FiLayout} from "react-icons/fi";
+import {createGlobalStyle} from "styled-components";
 
 class SignUp extends Component {
 
     state = {
-        email:'',
-        password:'',
-        firstName:'',
-        lastName:''
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: ''
     };
 
-    handleChange = (e ) => {
+    handleChange = (e) => {
         this.setState({
-            [e.target.id]:e.target.value
+            [e.target.id]: e.target.value
         })
     };
 
-    handleSubmit = ( e ) => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log( this.state );
+        console.log(this.state);
         this.props.signUp(this.state);
     };
 
     render() {
 
-        const { auth , authError } = this.props;
+        const {auth, authError} = this.props;
 
-        if( auth.uid ) return <Redirect to="/"/>
+        if (auth.uid) return <Redirect to="/"/>
 
         return (
-            <div className="sign-in_wrapper container">
-                <form onSubmit={ this.handleSubmit }>
-                    <h5>Sign Up</h5>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" onChange={ this.handleChange} className="form-control"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" onChange={ this.handleChange} className="form-control"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" id="firstName" onChange={ this.handleChange} className="form-control"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" onChange={ this.handleChange} className="form-control"/>
-                    </div>
-                    { authError ? <div className="alert alert-danger">{ authError }</div> : null }
-                    <div className="form-group">
-                        <button className="btn btn-primary">
-                            SignUp
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <BackgroundImg columns="2fr 3fr" url={Background}>
+                <GlobalStyle/>
+                <div>
+                    <Link to="/signin">Login</Link>
+                </div>
+                <FormWrapper middle>
+                    <Form middle onSubmit={this.handleSubmit}>
+                        <Typo size='36px'>Sign Up</Typo>
+                        <Wrapper width="480px" middle>
+                            <InputWrapper input-group>
+                                <InputGroup prepend><FiUser/></InputGroup>
+                                <Input id='firstName' onChange={this.handleChange} grouped/>
+                            </InputWrapper>
+                            <InputWrapper input-group>
+                                <InputGroup prepend><FiUser/></InputGroup>
+                                <Input id='lastName' onChange={this.handleChange} grouped/>
+                            </InputWrapper>
+                            <InputWrapper input-group>
+                                <InputGroup prepend><FiMail/></InputGroup>
+                                <Input id='email' onChange={this.handleChange} grouped placeholder="Enter your e-mail"/>
+                            </InputWrapper>
+                            <InputWrapper>
+                                <InputGroup prepend><FiLock/></InputGroup>
+                                <Input id='password' onChange={this.handleChange} type="password"/>
+                            </InputWrapper>
+                            {authError ? <div className="alert alert-danger">{authError}</div> : null}
+                            <InputWrapper>
+                                <Button large block center>Sign up</Button>
+                            </InputWrapper>
+                        </Wrapper>
+                    </Form>
+                </FormWrapper>
+            </BackgroundImg>
         );
     }
 }
 
-const mapStateToProps = ( state ) => {
-    return{
+const GlobalStyle = createGlobalStyle`
+  div > svg {
+   height: 1.5rem;
+   width: 1.5rem;
+  }
+`;
+
+const mapStateToProps = (state) => {
+    return {
         auth: state.firebase.auth,
-        authError : state.auth.authError
+        authError: state.auth.authError
     }
 };
 
-const MapDispatchToProps = ( dispatch ) => {
-    return{
-        signUp : ( newUser ) => dispatch( signUp( newUser))
+const MapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => dispatch(signUp(newUser))
     }
 };
 
-export default connect( mapStateToProps , MapDispatchToProps  )(SignUp);
+export default connect(mapStateToProps, MapDispatchToProps)(SignUp);

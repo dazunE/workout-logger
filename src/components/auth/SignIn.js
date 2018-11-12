@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom'
+import {Redirect , Link } from 'react-router-dom'
 import {signIn} from '../../store/actions';
 import { createGlobalStyle } from 'styled-components';
+import ReactSVG from 'react-svg';
 
 import Background from '../../assests/images/main-bg-2.jpg';
+import GymSvg from '../../assests/images/undraw_personal_trainer_ote3.svg';
 
 import BackgroundImg from '../styled/Background';
 import Typo from '../styled/headings/Title';
@@ -18,12 +20,12 @@ import Button from '../styled/Elements/Button';
 import {FiUser, FiLock} from 'react-icons/fi';
 
 
+
 class SignIn extends Component {
 
     state = {
         email: '',
         password: '',
-        loader:false
     };
 
     handleChange = (e) => {
@@ -34,6 +36,7 @@ class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log( this.state );
         this.props.signIn(this.state);
     };
 
@@ -72,7 +75,7 @@ class SignIn extends Component {
                     </Form>
                 </FormWrapper>
                 <div>
-                    <p>Hello Dasun</p>
+                    <Link to="/signup">Signup</Link>
                 </div>
             </BackgroundImg>
         );
@@ -95,7 +98,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         authError: state.auth.authError,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
     }
 }
 
