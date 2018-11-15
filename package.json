@@ -20,7 +20,7 @@
     "redux": "^4.0.1",
     "redux-firestore": "^0.5.8",
     "redux-thunk": "^2.3.0",
-    "serve": "^6.5.8",
+    "serve": "^7.0.0.",
     "styled-components": "^4.0.3",
     "styled-is": "^1.1.5"
   },
